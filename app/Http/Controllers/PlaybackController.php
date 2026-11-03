@@ -63,3 +63,4 @@ class PlaybackController extends Controller
         ]);
     }
 }
+

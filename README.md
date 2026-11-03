@@ -50,7 +50,7 @@ A modern web application built with **Laravel 12**, **Laravel Reverb (WebSockets
 | Layer | Technology |
 |---|---|
 | **Backend Framework** | Laravel 12.x (PHP 8.2+) |
-| **Database** | SQLite (Default, zero-config) / MySQL compatible |
+| **Database** | MySQL (XAMPP `127.0.0.1:3306`, db: `movie_room`) |
 | **WebSockets Server** | Laravel Reverb (First-party, high performance) |
 | **Broadcasting Client**| Laravel Echo + Pusher JS |
 | **Frontend UI** | Blade + Alpine.js + Tailwind CSS |
