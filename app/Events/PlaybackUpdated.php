@@ -5,11 +5,11 @@ namespace App\Events;
 use App\Models\Room;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class PlaybackUpdated implements ShouldBroadcast
+class PlaybackUpdated implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -27,6 +27,11 @@ class PlaybackUpdated implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [new PresenceChannel('room.' . $this->room->uuid)];
+    }
+
+    public function broadcastAs(): string
+    {
+        return 'PlaybackUpdated';
     }
 
     public function broadcastWith(): array

@@ -367,10 +367,10 @@ function roomApp() {
                 window.Pusher = Pusher;
                 window.Echo = new Echo({
                     broadcaster: 'reverb',
-                    key: '{{ env("REVERB_APP_KEY", "movie-room-key-local") }}',
-                    wsHost: '{{ env("REVERB_HOST", "localhost") }}',
-                    wsPort: {{ env("REVERB_PORT", 8080) }},
-                    wssPort: {{ env("REVERB_PORT", 8080) }},
+                    key: '{{ config("broadcasting.connections.reverb.key", "movie-room-key-local") }}',
+                    wsHost: '{{ config("broadcasting.connections.reverb.options.host", "127.0.0.1") }}',
+                    wsPort: {{ config("broadcasting.connections.reverb.options.port", 8080) }},
+                    wssPort: {{ config("broadcasting.connections.reverb.options.port", 8080) }},
                     forceTLS: false,
                     enabledTransports: ['ws', 'wss'],
                     authEndpoint: '/broadcasting/auth',

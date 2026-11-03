@@ -6,11 +6,11 @@ use App\Models\ChatMessage;
 use App\Models\Room;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MessageSent implements ShouldBroadcast
+class MessageSent implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -24,13 +24,18 @@ class MessageSent implements ShouldBroadcast
         return [new PresenceChannel('room.' . $this->room->uuid)];
     }
 
+    public function broadcastAs(): string
+    {
+        return 'MessageSent';
+    }
+
     public function broadcastWith(): array
     {
         return [
             'id' => $this->message->id,
             'sender_name' => $this->message->sender_name,
             'content' => $this->message->content,
-            'is_system_message' => $this->message->is_system_message,
+            'is_system_message' => (bool) $this->message->is_system_message,
             'created_at' => $this->message->created_at->toISOString(),
         ];
     }
