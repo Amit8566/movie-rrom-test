@@ -54,3 +54,4 @@ class ResolveRoomParticipant
         return $next($request);
     }
 }
+
